@@ -66,7 +66,7 @@ Any service provider created in the scope of this project will have its own pack
 
 | Name | Description | URL |
 |:--------|:--------------|:------|
-|**Baum** | Baum is an implementation of the Nested Set pattern for Laravel 5's Eloquent ORM. | http://etrepat.com/baum/|
+| **Baum** | Baum is an implementation of the Nested Set pattern for Laravel 5's Eloquent ORM. | http://etrepat.com/baum/ |
 
 Structure
 ---------
@@ -164,13 +164,10 @@ The languages supported are:
 
 (Refer to [Laravel documentation](https://laravel.com/docs/5.4/localization) for more information)
 
-The Client
-----------
-
-
 
 Revision Table
 --------------
+
 | Author   | Revision      | Date  | Version Number |
-|----------|:-------------:|------:|----------------:|
+|:----------|:-------------:|------:|----------------:|
 | Alberto Pereira | First draft | 25/02/2017 | 0.1.0 |
