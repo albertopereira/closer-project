@@ -5,5 +5,6 @@ The project seeks to enhance the inclusiveness of budgetary policies in local pu
 
 - [Architecture](https://github.com/albertopereira/closerproject/blob/master/docs/architecture.md)
 - [Client](https://github.com/albertopereira/closerproject/blob/master/docs/client.md)
+- [API](https://github.com/albertopereira/closerproject/blob/master/docs/api.md)
 - [Quality Assurance](https://github.com/albertopereira/closerproject/blob/master/docs/quality_assurance.md)
 - [User Manual](https://github.com/albertopereira/closerproject/blob/master/docs/user_manual.md)
