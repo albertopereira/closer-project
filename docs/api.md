@@ -96,6 +96,7 @@ Responses
 The responses are constructed in the following structure:
 
 ### Response
+
 | Code | Type | Content | Description |
 |:-----|:-----|:--------|:------------|
 | 200 | OK | Budget | |
