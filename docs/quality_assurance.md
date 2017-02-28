@@ -123,6 +123,7 @@ License
 
 Revision Table
 --------------
+
 | Author   | Revision      | Date  | Version Number |
 |----------|:-------------:|------:|----------------:|
 | Alberto Pereira | First draft | 25/02/2017 | 0.1.0 |
