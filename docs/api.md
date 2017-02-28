@@ -102,6 +102,7 @@ The responses are constructed in the following structure:
 | 200 | OK | Budget | |
 | Other codes | KO | error | Error string |
 
+
 ### Example: request
 
 GET https://example.pt:1234/1111
