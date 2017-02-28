@@ -21,7 +21,7 @@ General specification
 
 Communication with the API server is made with JSON/REST requests.
 
-###API structure
+### API structure
 
 | API                             |
 |---------------------------------|
@@ -36,7 +36,7 @@ API port.
 **View**
 The id of the view to return.
 
-###Responses
+### Responses
 
 Responses to requests originate a 200 code in success, or other codes in case of error. A successful response returns a JSON object, and a error response returns a string with the description of the error.
 
@@ -45,7 +45,7 @@ Data models
 
 The following models are used in replies to requests:
 
-###Budget
+### Budget
 
 | Field | Datatype | Optional | Description |
 |:------|:---------|:---------|:------------|
@@ -60,7 +60,7 @@ The following models are used in replies to requests:
 | state | String | Yes | |
 | view  | View | No | | 
 
-###View
+### View
 
 | Field | Datatype | Optional | Description |
 |:------|:---------|:---------|:------------|
@@ -70,7 +70,7 @@ The following models are used in replies to requests:
 | graphs | Array | No | Defines which graphs to show |
 | data | Data | No | |
 
-###Data
+### Data
 
 | Field | Datatype | Optional | Description |
 |:------|:---------|:---------|:------------|
@@ -80,7 +80,7 @@ The following models are used in replies to requests:
 | source_url  | String   | Yes      |             |
 | values | [Value] | No | |
 
-###Value
+### Value
 
 | Field | Datatype | Optional | Description |
 |:------|:---------|:---------|:------------|
@@ -95,17 +95,17 @@ Responses
 
 The responses are constructed in the following structure:
 
-###Response
+### Response
 | Code | Type | Content | Description |
 |:-----|:-----|:--------|:------------|
 | 200 | OK | Budget | |
 | Other codes | KO | error | Error string |
 
-###Example: request
+### Example: request
 
 GET https://example.pt:1234/1111
 
-###Example: response
+### Example: response
 
     {
 	    "id": 1,
