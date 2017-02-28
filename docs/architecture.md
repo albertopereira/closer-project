@@ -63,6 +63,7 @@ A Service Provider can be considered a parallel, and closed, piece of software, 
 Any service provider created in the scope of this project will have its own package repository. Nevertheless, any service provider used is listed in this section.
 
 #### Providers
+
 | Name | Description | URL |
 |:--------|:--------------|:------|
 |**Baum** | Baum is an implementation of the Nested Set pattern for Laravel 5's Eloquent ORM. | http://etrepat.com/baum/|
