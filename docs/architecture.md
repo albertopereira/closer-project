@@ -20,7 +20,7 @@ Hence, it provides a framework for building budget "objects", divided in expense
 Overview
 -----------------
 
-###Summary
+### Summary
 
 The architecture of CLOSER is composed of:
 
@@ -28,15 +28,15 @@ The architecture of CLOSER is composed of:
  - An API module for serving the visualization objects
  - A client module that will consume the API
 
-###Backend module
+### Backend module
 
 The backend module is be the main entry point for the management of the budgets. Through it, a user can create, edit or delete budgets; generate *views* for visualization (snapshots of specific details of a budget); create the snippets for inclusion in a external website.
 
-###API module
+### API module
 
 The API module is comprised of several endpoints that will serve the managed data of a specific budget/view.
 
-###Client module
+### Client module
 
 The client module generates either a complete visualization or a view of a budget of a specific municipality through the years, including all its categories (revenues, expenses, funds and reserves, etc). As it consumes the data from the API, it can be housed in any other server.
 
@@ -50,19 +50,19 @@ CLOSER is an application built over [Laravel](https://laravel.com), a modern PHP
 Request Lifecycle
 ---------
 
-###Summary
+### Summary
 
 The laravel application lifecycle for CLOSER can be represented by the following diagram:
 
 ![enter image description here](http://albertopereira.com/images/laravel_lifecycle.png)
 
-###Service Providers
+### Service Providers
 
-####Summary
+#### Summary
 A Service Provider can be considered a parallel, and closed, piece of software, that is included (registered or *injected*), in a Laravel application, at boot level. Any service it provides can be accessed throughout the application. This means that it is not included in the core of the application, being considered an external service. 
 Any service provider created in the scope of this project will have its own package repository. Nevertheless, any service provider used is listed in this section.
 
-####Providers
+#### Providers
 | Name | Description | URL |
 |:--------|:--------------|:------|
 |**Baum** | Baum is an implementation of the Nested Set pattern for Laravel 5's Eloquent ORM. | http://etrepat.com/baum/|
@@ -84,13 +84,13 @@ A response from the application can be accessed in one of three ways:
 Data Models
 --------------
 
-###Diagram
+### Diagram
 
 The data models can be represented by:
 
 ![enter image description here](http://albertopereira.com/images/er.png)
 
-###Model relationships
+### Model relationships
 
 The relationships have the following rules:
 
@@ -104,7 +104,7 @@ The relationships have the following rules:
 
 > e.g.: the budget data for a School can be contained (be the child) in the budget data for all schools of a broader category Education (the parent).
 
-###Model fields
+### Model fields
 
 The `Budgets` table have the following definitions for its fields:
 
@@ -146,7 +146,7 @@ The `Data` table have the following definitions for its fields:
 | Data | value  | The decimal value of the data. |
 | Data | coordinates | the latitude;longitude of the data. |
 
-###Functional description
+### Functional description
 
 The following diagram describes the several use cases for the application:
 
