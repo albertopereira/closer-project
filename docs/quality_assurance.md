@@ -23,7 +23,7 @@ The documentation is comprised of the following individual documents:
 
 Versioning
 --------
-###Summary
+### Summary
 
 The versioning will be bundled for the documentation and for the software. Any changes in either of them will, necessarily, change the version number. 
 
@@ -33,7 +33,7 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
  2. MINOR version when you add functionality in a backwards-compatible manner, and
  3. PATCH version when you make backwards-compatible bug fixes.
 
-#####Documentation
+##### Documentation
 
 Regardless of the medium where it is placed, every document will have, explicitly identified on the first page, the author of the document, the date of the latest release, and the version number.
 
@@ -49,7 +49,7 @@ At the bottom of the document there will be a revision table, following the form
 Coding conventions
 ------------------
 
-###General
+### General
 
 **Models** are singular nouns (i.e. User).
 **Controllers** are singular nouns with `Controller` suffix (i.e. `HomeController`).
@@ -59,7 +59,7 @@ Coding conventions
 **Listeners** are verbs in imperative mood (i.e. `SendWelcomeEmail`).
 **Gates** are verbs in imperative mood (i.e. `update-post`).
 
-###Migrations Naming
+### Migrations Naming
 
 create_`<table-name>`_table
 add_`<column-names-delimited-with-undescore>`\_to\_`<table-name>`_table
@@ -68,7 +68,7 @@ drop_`<table-name>`_table
 drop_`<column-names-delimited-with undescore>`\_to\_`<table-name>`_table
 drop_`<index-or-foreign-key-name>`
 
-###Index Naming
+### Index Naming
 An index should be named table_column_type. Examples:
 users_role_id_foreign
 users_id_primary
@@ -88,7 +88,7 @@ Follow the conventions given in the example in the table:
 | PUT/PATCH | `/photos/{photo}`      | update       | photos.update | Update a given resource | 
 | DELETE    | `/photos/{photo}`      | destroy      | photos.destroy | Destroy a resource |
 
-###Comments
+### Comments
 Regarding comment style, for coesion and automatic generation of the published API, it's encouraged the use of the DocBlock  format 
 (https://phpdoc.org/docs/latest/guides/docblocks.html), though any code elements that don't have that requirement can have a different style.
 All comments are written in English.
@@ -97,14 +97,14 @@ CONTRIBUTIONS
 -------------
 All contributions all welcome and encouraged and must be made through bug reports or pull requests in the official github repository. 
 
-###Reporting Issues
+### Reporting Issues
 
 For submitting an issue, please the required steps are:
 
 1. Check in open and closed issues if the inquiry was reported before by somebody else.
 2. Propose a PR if needed.
 
-###Security Vulnerabilities
+### Security Vulnerabilities
 
 Any security vulnerability discovered must not be reported by creating a new issue in the repository. It must be reported directly to a contributor email.
 
