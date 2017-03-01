@@ -127,20 +127,50 @@ Data in the client is centralized in a collection of globally accessible objects
 
 The main element of the data store, served by the API, is an object with the following structure:
 
-An entry is defined by:
+### Budget
 
- - name {string}: entry name
- - src {url string}: link to data source from where entry data was extracted (optional)
- - sub {array of other entries}: subsections that make up current entry
- - descr {string} : entry description (optional)
- - values {array of value objects} : entry values over time
+| Field | Datatype | Optional | Description |
+|:------|:---------|:---------|:------------|
+| id    | Integer  | No       |             |
+| org_name | String | Yes | |
+| org_email | String | Yes | |
+| org_url | String | Yes | |
+| agency_name | String | Yes | |
+| agency_email | String | Yes | |
+| agency_url | String | Yes | |
+| country | String | Yes | |
+| state | String | Yes | |
+| view  | View | No | | 
 
-A value object is defined by:
+### View
 
-- year : year of value
-- val : value
-- lat: latitude of value
-- lng: longitude of value
+| Field | Datatype | Optional | Description |
+|:------|:---------|:---------|:------------|
+| id    | Integer  | No       |             |
+| name  | String   | Yes      |             |
+| description  | String   | Yes      |             |
+| graphs | Array | No | Defines which graphs to show |
+| data | Data | No | |
+
+### Data
+
+| Field | Datatype | Optional | Description |
+|:------|:---------|:---------|:------------|
+| id    | Integer  | No       |             |
+| description  | String   | Yes      |             |
+| source  | String   | Yes      |             |
+| source_url  | String   | Yes      |             |
+| values | [Value] | No | |
+
+### Value
+
+| Field | Datatype | Optional | Description |
+|:------|:---------|:---------|:------------|
+| val    | Integer  | No       |             |
+| year    | Integer  | No       |             |
+| lat    | String  | No       |             |
+| lng    | String  | No       |             |
+| sub | [Value] | Yes | |
 
 
 Revision Table
