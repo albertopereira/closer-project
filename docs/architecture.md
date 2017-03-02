@@ -107,7 +107,7 @@ The relationships have the following rules:
 
 ### Model fields
 
-The `Budgets` table have the following definitions for its fields:
+The `Budgets` table has the following definitions for its fields:
 
 | Table | Field | Definition |
 |:------|:------|:-----------|
@@ -122,14 +122,14 @@ The `Budgets` table have the following definitions for its fields:
 
 ## 
 
-The `BudgetTypes` table have the following definitions for its fields:
+The `BudgetTypes` table has the following definitions for its fields:
 
 | Table | Field | Definition |
 |:------|:------|:-----------|
 | BudgetTypes | name  | The name for the specific data (e.g.: expenses, revenues, etc) |
 
 ## 
-The `Years` table have the following definitions for its fields:
+The `Years` table has the following definitions for its fields:
 
 | Table | Field | Definition |
 |:------|:------|:-----------|
@@ -137,7 +137,7 @@ The `Years` table have the following definitions for its fields:
 | Years | short_description  | The summary of the budget for a specific year. |
 
 ## 
-The `Data` table have the following definitions for its fields:
+The `Data` table has the following definitions for its fields:
 
 | Table | Field | Definition |
 |:------|:------|:-----------|
@@ -146,6 +146,14 @@ The `Data` table have the following definitions for its fields:
 | Data | source_url  | The url of the source of the data. |
 | Data | value  | The decimal value of the data. |
 | Data | coordinates | the latitude;longitude of the data. |
+
+The `Views` table has the following definitions for its fields:
+
+| Table | Field | Definition |
+|:------|:------|:-----------|
+| Views | name  | The name of the view. |
+| Views | description  | The description of the view. |
+
 
 ### Functional description
 
