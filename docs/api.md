@@ -79,6 +79,7 @@ The following models are used in replies to requests:
 | source  | String   | Yes      |             |
 | source_url  | String   | Yes      |             |
 | values | [Value] | No | |
+| sub | [Data] | Yes | |
 
 ### Value
 
@@ -88,7 +89,6 @@ The following models are used in replies to requests:
 | year    | Integer  | No       |             |
 | lat    | String  | No       |             |
 | lng    | String  | No       |             |
-| sub | [Value] | Yes | |
 
 Responses
 ---------
