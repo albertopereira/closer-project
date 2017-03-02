@@ -20,12 +20,12 @@ The client module generates either a complete visualization or a view of a budge
 Technologies
 ------------
 
-### Summary
+###Summary
 
 CLOSER client application is built over [VueJS](https://vuejs.org/), a javascript framework. Being decoupled and consuming data from an API service, other technologies can be used to create new clients, or new versions of the official client, enhancing the versatility of the application, and providing a needed flexibility for a long lifecycle.
  
 
-### External libraries and components
+###External libraries and components
 
 Any external library and component outside the scope of the vuejs framework core is listed here.
 
@@ -48,69 +48,69 @@ The following diagram represents the overall structure of the client application
 Mockup Components
 --------------
 
-### Summary
+###Summary
 
 This section shows the visual examples of the desired final **main representations** of data in the client.
 
-### Treemap
+###Treemap
 
-##### Definition
+#####Definition
 
 A treemap represents data hierarchically using nested rectangles.
 
-##### Example
+#####Example
 
 ![enter image description here](http://albertopereira.com/images/card.png)
 
-### Line Chart
+###Line Chart
 
-##### Definition
+#####Definition
 
 A line chart represents data using lines within a x*y axis.
 
-##### Example
+#####Example
 
 ![enter image description here](http://albertopereira.com/images/graph.png)
 
-### BubbleTree
+###BubbleTree
 
-##### Definition
+#####Definition
 
 Displays data in a radial display
 
-##### Example
+#####Example
 
 ![enter image description here](http://albertopereira.com/images/bubbletree.png)
 
-### Stacked Horizontal Graph
+###Stacked Horizontal Graph
 
-##### Definition
+#####Definition
 
 Displays a main set of data using stacked rectangles.
 
-##### Example
+#####Example
 
 ![enter image description here](http://albertopereira.com/images/stacked_horizontal_graph.png)
 
 
-### Tabular view
+###Tabular view
 
-##### Definition
+#####Definition
 
 Displays a main set of data using a table with the values.
 
-##### Example
+#####Example
 
 ![enter image description here](http://albertopereira.com/images/tabular.png)
 
 
-### Heatmap
+###Heatmap
 
-##### Definition
+#####Definition
 
 Displays a main set of data using maps with its geographical distribution.
 
-##### Example
+#####Example
 
 ![enter image description here](http://albertopereira.com/images/heatmap_1.png)
 ![enter image description here](http://albertopereira.com/images/heatmap_2.png)
@@ -119,11 +119,11 @@ Displays a main set of data using maps with its geographical distribution.
 The store
 ---------
 
-### Summary
+###Summary
 
 Data in the client is centralized in a collection of globally accessible objects, called the store. Every change in the data will have a correspondent change in a rerendered component, that represents that data.
 
-### Data structure
+###Data structure
 
 The main element of the data store, served by the API, is an object with the following structure:
 
@@ -161,6 +161,7 @@ The main element of the data store, served by the API, is an object with the fol
 | source  | String   | Yes      |             |
 | source_url  | String   | Yes      |             |
 | values | [Value] | No | |
+| sub | [Data] | Yes | |
 
 ### Value
 
@@ -170,7 +171,7 @@ The main element of the data store, served by the API, is an object with the fol
 | year    | Integer  | No       |             |
 | lat    | String  | No       |             |
 | lng    | String  | No       |             |
-| sub | [Value] | Yes | |
+
 
 
 Revision Table
