@@ -149,9 +149,22 @@ The `Data` table have the following definitions for its fields:
 
 ### Functional description
 
+#### Summary
 The following diagram describes the several use cases for the application:
 
 ![enter image description here](http://albertopereira.com/images/use_cases.png)
+
+#### Generation of views
+
+A view object, served through the API as a JSON object, has also a representation in the database. When generating views for publish, a JSON file corresponding to that view is created and stored locally. The API serves that file, and not programatically create and send a JSON response for each request. This allows for easier scalability in the future, if need be, by, for instance, serving those JSON files through a CDN.
+
+Hence, while creating a view, a user with editor permissions has two different actions:
+
+1. the creation of the view, that allows for an unpublished version of a view
+2. the publication of the view, that creates the JSON representation file
+
+Only after the publication of the view it can be accessed through the API.
+
 
 Internationalisation
 --------------------
