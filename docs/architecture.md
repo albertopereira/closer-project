@@ -120,15 +120,12 @@ The `Budgets` table has the following definitions for its fields:
 | Budgets | country | The country of the organization for which the budget applies. |
 | Budgets | state | The state of the organization for which the budget applies. |
 
-## 
-
 The `BudgetTypes` table has the following definitions for its fields:
 
 | Table | Field | Definition |
 |:------|:------|:-----------|
 | BudgetTypes | name  | The name for the specific data (e.g.: expenses, revenues, etc) |
 
-## 
 The `Years` table has the following definitions for its fields:
 
 | Table | Field | Definition |
@@ -136,7 +133,6 @@ The `Years` table has the following definitions for its fields:
 | Years | long_description  | A description of the budget for the specific year. It can also be a rundown or a call to attention of a specific aspect. |
 | Years | short_description  | The summary of the budget for a specific year. |
 
-## 
 The `Data` table has the following definitions for its fields:
 
 | Table | Field | Definition |
