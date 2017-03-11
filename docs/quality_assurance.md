@@ -16,8 +16,8 @@ The documentation is comprised of the following individual documents:
 
 1. Quality assurance (this document)
 2. Architecture
-3. Tools
-3. Usage
+3. Client
+3. User manual
 4. API
 
 
