@@ -7,7 +7,11 @@ use App\Entity;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+<<<<<<< HEAD
 class BudgetTypesTest extends TestCase
+=======
+class EntitiesTest extends TestCase
+>>>>>>> cd508e668a20df3538d08e145075a4c0c92dea17
 {
     use RefreshDatabase;
 
@@ -24,6 +28,7 @@ class BudgetTypesTest extends TestCase
         $response->assertSee($entity->organization_name);
     }
 
+<<<<<<< HEAD
     // public function test_user_cannot_see_others_entities()
     // {
     //     $entity1 = factory('App\Entity')->create();
@@ -114,4 +119,96 @@ class BudgetTypesTest extends TestCase
     //     ]);
 
     // }    
+=======
+    public function test_user_cannot_see_others_entities()
+    {
+        $entity1 = factory('App\Entity')->create();
+        
+        $entity2 = factory('App\Entity')->create();
+
+
+        $user = User::find($entity1->user_id);
+        
+        $this->be($user);
+
+        $response = $this->get('/home/2' . $entity2->id);
+
+        $response->assertDontSee($entity2->organization_name);
+    }
+
+
+    public function test_an_entity_is_created()
+    {
+        $entity = factory('App\Entity')
+                    ->create(['organization_name' => 'ACME Inc.']);
+
+        $this->assertEquals('ACME Inc.', $entity->organization_name);
+    }
+
+    public function test_an_entity_is_changed()
+    {
+        $entity = factory('App\Entity')
+                    ->create(['organization_name' => 'ACME Inc.']);
+
+        $entity->organization_name = 'ACME';
+
+        $this->assertEquals('ACME', $entity->organization_name);
+    }
+
+    public function test_create_new_entity()
+    {
+        $user = factory('App\User')->create();
+
+        $this->be($user);
+
+        $response = $this->call('POST', 'home/entity/create', ['organization_name' => 'ACME Inc.']);
+
+        $response->assertSessionHas('status', 'Entity added with success.');
+
+        $this->assertDatabaseHas('entities', [
+            'organization_name' => 'ACME Inc.'
+        ]);
+
+    }
+
+
+    public function test_edit_an_entity()
+    {
+        $entity = factory('App\Entity')
+                ->create(['organization_name' => 'ACME Inc.']);
+
+        $user = User::find($entity->user_id);
+        
+        $this->be($user);
+
+        $response = $this->call('PATCH', 'home/entity/' . $entity->id , ['organization_name' => 'ACME']);
+
+        $response->assertSessionHas('status', 'Entity edited with success.');
+
+        $this->assertDatabaseHas('entities', [
+            'organization_name' => 'ACME'
+        ]);
+
+    }
+
+
+    public function test_remove_an_entity()
+    {
+        $entity = factory('App\Entity')
+                ->create(['organization_name' => 'ACME Inc.']);
+
+        $user = User::find($entity->user_id);
+        
+        $this->be($user);
+
+        $response = $this->call('DELETE', 'home/entity/' . $entity->id);
+
+        $response->assertSessionHas('status', 'Entity removed with success.');
+
+        $this->assertDatabaseMissing('entities', [
+            'organization_name' => 'ACME Inc.'
+        ]);
+
+    }    
+>>>>>>> cd508e668a20df3538d08e145075a4c0c92dea17
 }

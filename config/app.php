@@ -52,7 +52,11 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'url' => env('APP_URL', 'http://localhost'),
+=======
+    'url' => env('APP_URL', 'http://closer-project.com/'),
+>>>>>>> cd508e668a20df3538d08e145075a4c0c92dea17
 
     /*
     |--------------------------------------------------------------------------
@@ -177,7 +181,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+<<<<<<< HEAD
         Barryvdh\Debugbar\ServiceProvider::class,
+=======
+        // Barryvdh\Debugbar\ServiceProvider::class,
+>>>>>>> cd508e668a20df3538d08e145075a4c0c92dea17
 
     ],
 
@@ -230,7 +238,11 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+<<<<<<< HEAD
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+=======
+        // 'Debugbar' => Barryvdh\Debugbar\Facade::class,
+>>>>>>> cd508e668a20df3538d08e145075a4c0c92dea17
 
     ],
 
