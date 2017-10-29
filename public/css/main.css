@@ -1,0 +1,26 @@
+.entity-details{
+    margin-top:10px;
+    font-size: 0.8em;
+    width: 100%;
+}
+
+ul.alert-danger li{
+    list-style-type: none;
+}
+
+.pull-right{
+    margin-left: 5px;
+}
+
+.header-form{
+    float:right;
+}
+
+.data-content{
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.row{
+    margin:0px;
+}
