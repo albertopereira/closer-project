@@ -1,0 +1,16 @@
+# Redirect everything in this directory to "good.html"   
+RewriteEngine on 
+RewriteRule ^revenues$ index.php?page=revenues
+RewriteRule ^revenues/([0-9]*)$ index.php?page=revenues&year=$1
+RewriteRule ^revenues/([0-9]*)/([^/]*)$ index.php?page=revenues&year=$1&mode=$2
+RewriteRule ^revenues/([0-9]*)/([^/]*)/([^/]*)$ index.php?page=revenues&year=$1&mode=$2&node=$3
+
+RewriteRule ^default$ index.php?page=default
+RewriteRule ^default/([0-9]*)$ index.php?page=default&year=$1
+RewriteRule ^default/([0-9]*)/([^/]*)$ index.php?page=default&year=$1&mode=$2
+RewriteRule ^default/([0-9]*)/([^/]*)/([^/]*)$ index.php?page=default&year=$1&mode=$2&node=$3
+
+RewriteRule ^funds$ index.php?page=funds
+RewriteRule ^funds/([0-9]*)$ index.php?page=funds&year=$1
+RewriteRule ^funds/([0-9]*)/([^/]*)$ index.php?page=funds&year=$1&mode=$2
+RewriteRule ^funds/([0-9]*)/([^/]*)/([^/]*)$ index.php?page=funds&year=$1&mode=$2&node=$3

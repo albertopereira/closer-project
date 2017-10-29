@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Minimal BubbleTree Demo</title>
+
+  <script type="text/javascript" src="../assets/scripts/jquery.min.js"></script>
+  <script type="text/javascript" src="../assets/scripts/jquery-migrate.min.js"></script>
+  <script type="text/javascript" src="../assets/scripts/jquery.history.js"></script>
+  <script type="text/javascript" src="../assets/scripts/jquery.tooltip.min.js"></script>
+  <script type="text/javascript" src="../assets/scripts/raphael-min.js"></script>
+  <script type="text/javascript" src="../assets/scripts/Tween.js"></script>
+  <script type="text/javascript" src="../assets/scripts/bubbletree.js"></script>
+  <link rel="stylesheet" type="text/css" href="../assets/styles/bubbletree.css" />
+  <script type="text/javascript" src="../assets/styles/cofog.js"></script>
+
+  <script type="text/javascript">
+
+		$(function() {
+
+			var randomNames = ['Burgis', 'Pascal', 'Lysann', 'Theo', 'Julia', 'Barnabas', 'Immanuel', 'Marisa', 'Folker', 'Hadumod', 'Friedegunde', 'Marco', 'Otto', 'Sonnhardt', 'Arntraud', 'Andree', 'Wiltrudis', 'Astrid', 'Kathrein', 'Raoul', 'Vivien', 'Ole', 'Leo', 'Dankward', 'David', 'Ferfried', 'Sonngard', 'Fabio', 'Hansjakob', 'Huberta', 'Doro', 'Gordian', 'Sturmius', 'Sturmhard', 'Reintraud', 'Sabine', 'Georg', 'Sylvia', 'Ann', 'Editha', 'Gunhard', 'Etienne', 'Hildtraud', 'Noah', 'Margarete', 'Stilla', 'Brian', 'Pauline', 'Edgar', 'Kathrin'];
+			var nodeCount = 1;
+			function generateRandomData(node, level) {
+				if (!level) level = 1;
+				var numChildren = 10; //3+Math.round(Math.random()*6);
+				node.children = [];
+				var amount = node.amount;
+				for (var i=0; i<numChildren; i++) {
+					nodeCount ++;
+					var child = {
+						label: randomNames[Number(String(level-1)+String(i))],
+						amount: i+1 < numChildren ? amount*Math.random()*.6 : amount
+					};
+					if (level == 1) child.color = vis4color.fromHSL(i/numChildren*360, .7, .5).x;
+					if (level == 2) child.color = vis4color.fromHex(node.color).lightness('*'+(.5+Math.random()*.5)).x;
+					amount -= child.amount;
+					node.children.push(child);
+					if (level < 3) generateRandomData(child, level+1);
+				}
+				return node;
+			}
+
+			var data = generateRandomData({
+				label: 'Random Names, Random Amounts',
+				amount: 100000000
+			});
+
+			data = '{"label": "Programas Cidade de Lisboa", "descr": "Programas para os próximos anos","src": "http://www.cm-lisboa.pt", "hash": "35808d3b", "coords": "38.7057302,-9.1414086","amount":287784,"children": [{"label":"EIXO A - LISBOA MAIS PRÓXIMA","descr":"EIXO A - LISBOA MAIS PRÓXIMA","hash":"k7imy","amount":123430,"children":[{"label":"CIDADE DE BAIRROS","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.7219039,-9.1541974","descr":"Programa Eixo A","hash":"h6v8a","amount":21145},{"label":"GOVERNAÇÃO PRÓXIMA E PARTICIPADA","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.7158099,-9.1450993","descr":"Programa Eixo A","hash":"cpg6b","amount":30667},{"label":"CIDADE SEGURA","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.713198,-9.1455714","descr":"Programa Eixo A","hash":"eeeu0","amount":8397},{"label":"SERVIÇOS URBANOS DE QUALIDADE","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.7219039,-9.1541974","descr":"Programa Eixo A","hash":"917bx","amount":63221}]},{"label":"EIXO B - LISBOA EMPREENDEDORA","descr":"EIXO B - LISBOA EMPREENDEDORA","hash":"prfj5","amount":1258,"children":[{"label":"CIDADE DO TRABALHO E DA CRIAÇÃO EMPREGO","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.713198,-9.1455714","descr":"Programa Eixo B","hash":"hoxu5","amount":138},{"label":"CIDADE DA INOVAÇÃO","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.713198,-9.1455714","descr":"Programa Eixo B","hash":"kfy9l","amount":145},{"label":"CIDADE DO COMÉRCIO","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.7158099,-9.1450993","descr":"Programa Eixo B","hash":"a5ipk","amount":975}]},{"label":"EIXO C - LISBOA INCLUSIVA","descr":"EIXO C - LISBOA INCLUSIVA","hash":"6pg6b","amount":45677,"children":[{"label":"DIREITO À HABITAÇÃO","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.713198,-9.1455714","descr":"Programa Eixo C","hash":"d4lgk","amount":18719},{"label":"DIREITO À EDUCAÇÃO","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.713198,-9.1455714","descr":"Programa Eixo C","hash":"k3ww4","amount":19489},{"label":"DIREITOS SOCIAIS","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.7144705,-9.1457431","descr":"Programa Eixo C","hash":"4yzb3","amount":1073},{"label":"DIREITOS À SAÚDE, DESPORTO E BEM-ESTAR","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.713198,-9.1455714","descr":"Programa Eixo C","hash":"j81kk","amount":3624},{"label":"CIDADE SOLIDÁRIA,INTERGERACIONAL E COES","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.7219039,-9.1541974","descr":"Programa Eixo C","hash":"1a4ch","amount":2772}]},{"label":"EIXO D - LISBOA SUSTENTÁVEL","descr":"EIXO D - LISBOA SUSTENTÁVEL","hash":"s5phg","amount":102002,"children":[{"label":"CIDADE REABILITADA E REABITADA","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.7144705,-9.1457431","descr":"Programa Eixo D","hash":"ausl3","amount":76771},{"label":"ESPAÇO PÚBLICO AMIGÁVEL","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.713198,-9.1455714","descr":"Programa Eixo D","hash":"j0aln","amount":1065},{"label":"CIDADE ACESSÍVEL PARA TODOS","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.7219039,-9.1541974","descr":"Programa Eixo D","hash":"znwmv","amount":8292},{"label":"CIDADE ECOLÓGICA","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.713198,-9.1455714","descr":"Programa Eixo D","hash":"fpoz3","amount":14438},{"label":"CIDADE DAS ENERGIAS RENOVÁVEIS","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.7158099,-9.1450993","descr":"Programa Eixo D","hash":"mm0n2","amount":1436}]},{"label":"EIXO E - LISBOA GLOBAL","descr":"EIXO E - LISBOA GLOBAL","hash":"ipr9z","amount":15416,"children":[{"label":"CIDADE DA CULTURA E DA CRIATIVIDADE","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.7144705,-9.1457431","descr":"Programa Eixo E","hash":"qb57m","amount":15350},{"label":"CIDADE DO DIÁLOGO DA INTERCULTURALIDADE","src":"CMC","url":"http://www.cm-lisboa.pt","coords":"38.7158099,-9.1450993","descr":"Programa Eixo E","hash":"s8otx","amount":66}]}]}';
+
+			new BubbleTree({
+				data: JSON.parse(data),
+				container: '.bubbletree'
+			});
+
+
+		});
+
+	</script>
+</head>
+<body>
+	<div class="bubbletree-wrapper">
+		<div class="bubbletree"></div>
+	</div>
+</body>
+</html>
