@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
@@ -90,9 +89,3 @@
         </div>
     </body>
 </html>
-=======
-<?php 
-
-    include '/home/closer/public/landing/index.php';
-?>
->>>>>>> cd508e668a20df3538d08e145075a4c0c92dea17
