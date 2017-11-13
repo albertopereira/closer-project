@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use \App\BudgetType;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,14 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::group(['middleware' => ['api','cors']], function () {
+    
+    Route::get('view/{budget}', function (BudgetType $budget) {
+        $t = str_replace("\"sub\"","\"children\"",$budget->data);
+        return $t;
+    });
+
 });
