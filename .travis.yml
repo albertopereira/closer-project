@@ -13,4 +13,4 @@ before_script:
 
 script:
   - mkdir -p build/logs 
-  - vendor/bin/phpunit tests
+  - vendor/bin/phpunit tests/feature
