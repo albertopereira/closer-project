@@ -146,38 +146,76 @@
         </div>
     @endif
 </div>
-    @if(count($budget_types) !== 0)
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <strong>Data <a href="/view/{{ $budget_type->id }}" target="_blank">(view page)</a></strong>
-                        {!! Form::open(['route' => array('budget_types.updateData', $budget_type->id), 'class' => 'form-inline form-confirm header-form']) !!}
-                            <button id="saveData" class="btn pull-right btn-xs btn-success">Save</button>
-                            <input type="hidden" name="data" id="formattedJSON">
-                        {!! Form::close() !!}
-                        <button id="addLevel" class="btn pull-right btn-xs btn-primary">Add level</button>
-                        <button id="removeLevel" class="btn pull-right btn-xs btn-primary">Remove level</button>
-                        <button id="addYear" class="btn pull-right btn-xs btn-primary">Add Year</button>  
-                        <button id="removeYear" class="btn pull-right btn-xs btn-primary">Remove Year</button>
-                        
-                    
-                        <div class="clearfix"></div>
-                    </div>
 
-                    <div class="panel-body data-content">
-                        <div id="data-content"></div>
-                    </div>
+@if(count($budget_types) !== 0)
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>Data <a href="/view/{{ $budget_type->id }}" target="_blank">(view page)</a></strong>
+                    {!! Form::open(['route' => array('budget_types.updateData', $budget_type->id), 'class' => 'form-inline form-confirm header-form']) !!}
+                        <button id="saveData" class="btn pull-right btn-xs btn-success">Save</button>
+                        <input type="hidden" name="data" id="formattedJSON">
+                    {!! Form::close() !!}
+                    <button id="addLevel" class="btn pull-right btn-xs btn-primary">Add level</button>
+                    <button id="removeLevel" class="btn pull-right btn-xs btn-primary">Remove level</button>
+                    <button id="addYear" class="btn pull-right btn-xs btn-primary">Add Year</button>  
+                    <button id="removeYear" class="btn pull-right btn-xs btn-primary">Remove Year</button>
+                    
+                
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="panel-body data-content">
+                    <div id="data-content"></div>
                 </div>
             </div>
         </div>
-        <script>
-            @if($budget_type->data !== null)
-                var jsonData = JSON.parse('{!! $budget_type->data !!}')
-            @else
-                // default values 
-                var jsonData = JSON.parse('{"key": "", "descr": "", "src": "", "hash": "", "coords": "", "values":[],"sub": [{"key":"","descr":"","hash":"","values":[{"year": 2017, "val": 0}]}]}')
-            @endif
-        </script>
-    @endif
+    </div>
+    <script>
+        @if($budget_type->data !== null)
+            var jsonData = JSON.parse('{!! $budget_type->data !!}')
+        @else
+            // default values 
+            var jsonData = JSON.parse('{"key": "", "descr": "", "src": "", "hash": "", "coords": "", "values":[],"sub": [{"key":"","descr":"","hash":"","values":[{"year": 2017, "val": 0}]}]}')
+        @endif
+    </script>
+@endif
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            {!! Form::open(['route' => array('views.updateData', $budget_type->id), 'class' => 'form-inline']) !!}
+            <input type="hidden" name="entity" value="{{ $entity->id }}">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>Views</strong>
+                        <button class="btn pull-right btn-xs btn-primary" id="new_view">New view</button>
+                        <button type="submit" class="btn pull-right btn-xs btn-success confirmActionForm">Save</button>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="panel-body views">
+                    @foreach ($budget_type->views as $view)
+                        <div class="single-view" data-content="{{ $view->id }}">
+                            <input type="checkbox" name='v[{{ $view->id }}]["gt"]' data-content="{{ $view->id }}" class="cb" data-type="gt" {{ in_array('gt', json_decode($view->data)) ? ' checked': '' }}>
+                            <input type="checkbox" name='v[{{ $view->id }}]["m"]' data-content="{{ $view->id }}" class="cb" data-type="m" {{ in_array('m', json_decode($view->data)) ? ' checked': '' }}>
+                            <input type="checkbox" name='v[{{ $view->id }}]["t"]' data-content="{{ $view->id }}" class="cb" data-type="t" {{ in_array('t', json_decode($view->data)) ? ' checked': '' }}>
+
+                            <img src="{{ asset('frontend/img/icons/graph_treemap.png') }}" class="icon big {{ in_array('gt', json_decode($view->data)) ? ' selected': '' }}" data-toggle="tooltip" title="Graph & Treemap" data-content="{{ $view->id }}" data-type="gt">
+                            <img src="{{ asset('frontend/img/icons/map.png') }}" class="icon {{ in_array('m', json_decode($view->data)) ? ' selected': '' }}" data-toggle="tooltip" title="Heatmap" data-content="{{ $view->id }}" data-type="m">
+                            <img src="{{ asset('frontend/img/icons/tabular.png') }}" class="icon {{ in_array('t', json_decode($view->data)) ? ' selected': '' }}" data-toggle="tooltip" title="Tabular" data-content="{{ $view->id }}" data-type="t">
+                            <button class="btn pull-right btn-xs btn-danger remove-single-view" data-content="{{ $view->id }}">Remove</button>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <script>
+                var iconsHome = "{{ URL::asset('/frontend/img/icons/') }}";
+            </script>
+            {!! Form::close() !!}
+        </div>
+    </div>
+</div>
+
 @endsection

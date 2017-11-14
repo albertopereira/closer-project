@@ -306,6 +306,48 @@ window.addEventListener('load', function() {
         $('#formattedJSON').val(dataToJSON())
     })
 
+    function updateIconClicks() {
+
+      $('.icon').unbind()
+      $('.remove-single-view').unbind()
+      $('[data-toggle="tooltip"]').tooltip("destroy")
+
+      $('.remove-single-view').on('click', function () {
+        $('.single-view[data-content=' + $(this).attr('data-content') + ']').remove()
+      })
+
+      $('[data-toggle="tooltip"]').tooltip();
+
+      $('.icon').on('click', function(){
+        $(this).toggleClass('selected')
+
+        $('.cb[data-type=' + $(this).attr('data-type') + '][data-content=' + $(this).attr('data-content') + ']').prop("checked", !$('.cb[data-type=' + $(this).attr('data-type') + '][data-content=' + $(this).attr('data-content') + ']').prop("checked"));
+      })
+    }
+
+    $('#new_view').on('click', function (e) {
+
+      e.preventDefault()
+      let data_content = parseInt($('.single-view:last').attr('data-content')) + 1
+
+      $('.views').append(
+          `<div class="single-view" data-content="` + data_content + `" >
+            <input type="checkbox" data-content="` + data_content + `" name='v[` + data_content + `]["gt"]' class="cb" data-type="gt">
+            <input type="checkbox" data-content="` + data_content + `" name='v[` + data_content + `]["m"]' class="cb" data-type="m">
+            <input type="checkbox" data-content="` + data_content + `" name='v[` + data_content + `]["t"]' class="cb" data-type="t">
+
+            <img src="` + iconsHome + `/graph_treemap.png" class="icon big" data-toggle="tooltip" title="Graph & Treemap" data-content="` + data_content + `" data-type="gt">
+            <img src="` + iconsHome + `/map.png" class="icon" data-toggle="tooltip" title="Heatmap" data-content="` + data_content + `" data-type="m">
+            <img src="` + iconsHome + `/tabular.png" class="icon" data-toggle="tooltip" title="Tabular" data-content="` + data_content + `" data-type="t">
+            <button class="btn pull-right btn-xs btn-danger remove-single-view" data-content="` + data_content + `">Remove</button>
+          </div>`
+      )
+
+      updateIconClicks()
+    })
+
+    updateIconClicks()
+
 })
 
     

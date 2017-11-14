@@ -88,4 +88,15 @@ class BudgetType extends Model
     {
         return $this->belongsTo('App\Entity');
     }
+
+    /**
+     * Return views.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function views()
+    {
+        return $this->hasMany('App\View', 'budget_id');
+    }
+
 }
