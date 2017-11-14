@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Redirect;
 use Auth;
 use App\BudgetType;
+use App\View;
 use Illuminate\Http\Request;
 
 class ViewController extends Controller
@@ -24,9 +25,14 @@ class ViewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(BudgetType $budget)
+    public function show(BudgetType $budget, $view)
     {
-        return view('views.main', compact('budget'));
+
+        $v = $budget->views[$view - 1];
+        $budget->view = json_decode($v->data);
+
+
+        return view('views.main', compact('budget', 'view'));
     }
 
         /**

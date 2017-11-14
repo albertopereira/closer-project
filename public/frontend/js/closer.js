@@ -4,6 +4,7 @@ var closer = closer || {};
 
 closer.root = null; // reference to root node of current section
 closer.budget = null; // current selected section
+closer.view = null; // current selected section
 closer.section = null; // current selected section
 closer.mode = null; // current mode (map, table etc.)
 closer.data = {}; // json data
@@ -58,11 +59,12 @@ Number.prototype.px = function () {
 function initialize(){
     var urlComponents = window.location.pathname.substring(1).split('/');
     var params = {
-        budget : urlComponents[1],        
-        section : urlComponents[2],
-        year : urlComponents[3],
-        mode : urlComponents[4],
-        node : urlComponents[5]
+        budget : urlComponents[1],
+        view : urlComponents[2],
+        section : urlComponents[3],
+        year : urlComponents[4],
+        mode : urlComponents[5],
+        node : urlComponents[6]
     }
 
     closer.navbar.initialize();
@@ -96,6 +98,7 @@ function initializeVisualizations(params) {
     }
     closer.section = params.section;
     closer.budget = params.budget;
+    closer.view = params.view;
 
     // highlight current selection in navigation bar
     $('.section').each(function () {
@@ -216,7 +219,7 @@ function popUrl(event) {
 */
 function setMode(mode) {
     var $container = $('#closer-wrap');
-    mode = mode || "t";
+    mode = mode || defaultMode;
     closer.mode = mode;
     closer.navigation = closer.modes[mode].js;
     $container.html(Mustache.render($(closer.modes[mode].template).html()));
@@ -231,7 +234,7 @@ function setMode(mode) {
 function switchMode(mode, pushurl) {
     if (pushurl === undefined) pushurl = true;
     setMode(mode);
-    if (pushurl) pushUrl(closer.budget, closer.section, closer.thisYear, mode, closer.root.hash);
+    if (pushurl) pushUrl(closer.budget, closer.view, closer.section, closer.thisYear, mode, closer.root.hash);
     loadData();
 }
 
@@ -250,7 +253,7 @@ function changeYear(year) {
     if (year === closer.thisYear) return;
 
     // push change to browser history
-    pushUrl(closer.budget, closer.section, year, closer.mode, closer.root.hash);
+    pushUrl(closer.budget, closer.view, closer.section, year, closer.mode, closer.root.hash);
     // set new year values
     closer.thisYear = year;
     yearIndex = closer.thisYear - closer.firstYear;

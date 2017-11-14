@@ -196,7 +196,13 @@
                 </div>
 
                 <div class="panel-body views">
+                    @php
+                        $i = 0
+                    @endphp
                     @foreach ($budget_type->views as $view)
+                        @php
+                            $i++
+                        @endphp
                         <div class="single-view" data-content="{{ $view->id }}">
                             <input type="checkbox" name='v[{{ $view->id }}]["gt"]' data-content="{{ $view->id }}" class="cb" data-type="gt" {{ in_array('gt', json_decode($view->data)) ? ' checked': '' }}>
                             <input type="checkbox" name='v[{{ $view->id }}]["m"]' data-content="{{ $view->id }}" class="cb" data-type="m" {{ in_array('m', json_decode($view->data)) ? ' checked': '' }}>
@@ -206,6 +212,12 @@
                             <img src="{{ asset('frontend/img/icons/map.png') }}" class="icon {{ in_array('m', json_decode($view->data)) ? ' selected': '' }}" data-toggle="tooltip" title="Heatmap" data-content="{{ $view->id }}" data-type="m">
                             <img src="{{ asset('frontend/img/icons/tabular.png') }}" class="icon {{ in_array('t', json_decode($view->data)) ? ' selected': '' }}" data-toggle="tooltip" title="Tabular" data-content="{{ $view->id }}" data-type="t">
                             <button class="btn pull-right btn-xs btn-danger remove-single-view" data-content="{{ $view->id }}">Remove</button>
+                            <button class="btn pull-right btn-xs btn-success embed-single-view" data-embed="embed_{{ $i }}">Embed</button>
+                            <div class="embed_{{ $i }}" style="display:none; position:absolute;width: 400px; height:60px; right: 0px; background-color: #ffffff; border:1px solid #dddddd;">
+                                <textarea class="copy_{{ $i }}" style="width: 90%;height:90%;margin:5px;border:1px solid #cccccc;overflow: hidden;"><iframe src="{{ url('/view/' . $budget_type->id .'/'. $i) }}" seamless width="100%; height:765px"></iframe></textarea>
+                                <a data-copy="copy_{{ $i }}" class="copy-embed" href="#" style="position: absolute;right: 5px;">&lt;/&gt;</a>
+                            </div>
+                            <button class="btn pull-right btn-xs btn-primary goto-single-view" data-content="{{ url('/view/' . $budget_type->id .'/'. $i) }}">View in page</button>
                         </div>
                     @endforeach
                 </div>

@@ -2,30 +2,38 @@
 <div class="purple-border" id="closer-menubar" >
   <div class="container">
 
-    <div class="homebutton" onclick='window.location = "/view/{{ $budget->id }}"'>
+    <div class="homebutton" onclick='window.location = "/view/{{ $budget->id }}/{{ $view }}"'>
 
       <div style="font-size:32px;line-height:28px; display:inline-block"> <?php echo $shortName; ?>, <?php echo $state; ?>  </div>
    </div>
 
     <div id="navbar-links" style="line-height:30px;">
 
-     <div onclick='window.location = "/view/{{ $budget->id }}"' class="entry homebutton"> <?php echo $budgetDescription; ?> </div>
+     <div onclick='window.location = "/view/{{ $budget->id }}/{{ $view }}"' class="entry homebutton"> <?php echo $budgetDescription; ?> </div>
 
     <div class="entry" id="navbar-right" style="float:right;">
         <input id="searchbox" type="text" class="margin menubutton margin search" placeholder="Procurar">
 
-        <div class="menubutton margin">
-          <span> <i class="icon-th-large"></i> </span>
-          <a id="navbar-map" href="javascript:switchMode('t'); "> Resumo </a>
-        </div>
-        <div class="menubutton margin">
-          <span> <i class="icon-th-list"></i> </span>
-          <a id="navbar-table" href="javascript:switchMode('l'); "> Tabela </a>
-        </div>        
-        <div class="menubutton margin">
-          <span> <i class="glyphicons icon-map-marker"></i> </span>
-          <a id="navbar-table" href="javascript:switchMode('h'); "> Heatmap </a>
-        </div>
+        @if($t)
+          <div class="menubutton margin">
+            <span> <i class="icon-th-large"></i> </span>
+            <a id="navbar-map" href="javascript:switchMode('t'); "> Resumo </a>
+          </div>
+        @endif
+
+        @if($l)
+          <div class="menubutton margin">
+            <span> <i class="icon-th-list"></i> </span>
+            <a id="navbar-table" href="javascript:switchMode('l'); "> Tabela </a>
+          </div>
+        @endif
+
+        @if($h)
+          <div class="menubutton margin">
+            <span> <i class="glyphicons icon-map-marker"></i> </span>
+            <a id="navbar-table" href="javascript:switchMode('h'); "> Heatmap </a>
+          </div>
+        @endif
 
         <ul id="yeardrop" class="nav menubutton">
           <li  id="yeardrop-container" class="dropdown" style="display:none;">

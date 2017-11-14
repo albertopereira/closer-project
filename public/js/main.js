@@ -348,6 +348,21 @@ window.addEventListener('load', function() {
 
     updateIconClicks()
 
+    $('.goto-single-view').on('click', function () {
+      window.open($(this).attr('data-content'), '_blank')
+    })
+
+    $('.embed-single-view').on('click', function (e) {
+      e.preventDefault()
+      $('.' + $(this).attr('data-embed')).css('top', $(this).position().top - 80 + 'px')
+      $('.' + $(this).attr('data-embed')).toggle()
+    })
+
+    $('.copy-embed').on('click', function (e) {
+      e.preventDefault()
+      $('.' + $(this).attr('data-copy')).select();
+      document.execCommand("copy");
+    })
 })
 
     

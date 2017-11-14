@@ -16,12 +16,25 @@
         $gaKey = "";
         $budgetDescription = $budgetData['descr'];
 
+        $t = in_array('gt', $budget->view);
+        $l = in_array('t', $budget->view);
+        $h = in_array('m', $budget->view);
+
     ?>
 
 
     <script>
-      var longName = "<?php echo $longName; ?>";
-      var municipalURL = "<?php echo $municipalURL; ?>";
+        var longName = "<?php echo $longName; ?>";
+        var municipalURL = "<?php echo $municipalURL; ?>";
+        var defaultMode = '';
+        <?php if ($t) { ?>
+            defaultMode = 't';
+        <?php } else if ($l) { ?>
+            defaultMode = 'l';
+        <?php } else { ?>
+            defaultMode = 'h';
+        <?php } ?>
+
     </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
