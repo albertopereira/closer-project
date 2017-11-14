@@ -53,15 +53,15 @@ class HomeController extends Controller
         $entities = Auth::user()->entities()->get(['id', 'organization_name']);
 
         if($entity !== null){
-            $budget_types = $entity->budgetTypes()->get();
+            $budget_types = $entity->budgetTypes()->with('views')->get();
         } else {
             $budget_types = [];
         }
 
         if($budget_type === null && $entity !== null){
-            $budget_type = $entity->budgetTypes()->first();
+            $budget_type = $entity->budgetTypes()->with('views')->first();
         } else if($entity !== null) {
-            $budget_type = $entity->budgetTypes()->find($budget_type)->first();
+            $budget_type = $entity->budgetTypes()->with('views')->find($budget_type)->first();
         }
 
         if($entity !== null && Auth::user()->id != $entity->user_id){

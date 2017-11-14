@@ -30,6 +30,9 @@ Route::patch('/home/budget_types/{budget_type}', 'BudgetTypeController@update');
 Route::post('/home/budget_types/{budget_type}', 'BudgetTypeController@updateData')->name('budget_types.updateData');
 Route::delete('/home/budget_types/{budget_type}', 'BudgetTypeController@destroy')->name('budget_types.destroy');
 
+Route::post('/home/views/{view}', 'ViewController@updateData')->name('views.updateData');
+Route::delete('/home/views/{view}', 'ViewController@destroy')->name('views.destroy');
+
 Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/home/{entity}', 'HomeController@show');
 Route::get('/home/{entity}/{budget_type?}', 'HomeController@show');
