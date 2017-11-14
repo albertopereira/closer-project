@@ -42,4 +42,4 @@ Route::get('/home/{entity}/{budget_type?}', 'HomeController@show');
 //    return View::make("views.main");
 // });
 
-Route::get("/view/{budget}/{page?}/{year?}/{mode?}/{node?}", 'ViewController@show');
+Route::get("/view/{budget}/{view}/{page?}/{year?}/{mode?}/{node?}", 'ViewController@show');
