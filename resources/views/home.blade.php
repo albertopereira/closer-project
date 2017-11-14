@@ -180,7 +180,7 @@
             var jsonData = JSON.parse('{"key": "", "descr": "", "src": "", "hash": "", "coords": "", "values":[],"sub": [{"key":"","descr":"","hash":"","values":[{"year": 2017, "val": 0}]}]}')
         @endif
     </script>
-@endif
+
 
 <div class="container">
     <div class="row">
@@ -217,5 +217,6 @@
         </div>
     </div>
 </div>
+@endif
 
 @endsection
