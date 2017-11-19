@@ -2,7 +2,7 @@ API
 =======
 Author: Alberto Pereira
 
-Date: 25/02/2017
+Date: 19/11/2017
 
 Version: 0.1.0
 
@@ -219,4 +219,4 @@ Revision Table
 
 | Author   | Revision      | Date  | Version Number |
 |----------|:-------------:|------:|----------------:|
-| Alberto Pereira | First draft | 25/02/2017 | 0.1.0 |
+| Alberto Pereira | First draft | 19/11/2017 | 0.1.0 |
