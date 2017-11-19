@@ -25,13 +25,16 @@ Communication with the API server is made with JSON/REST requests.
 
 | API                             |
 |---------------------------------|
-| https://[address]:[port]/{view} |
+| https://[address]:[port]/{budget}/{view} |
 
 **Address**
 IP Address or API server name.
 
 **Port**
 API port.
+
+**Budget**
+The id of the budget to return.
 
 **View**
 The id of the view to return.
@@ -47,48 +50,23 @@ The following models are used in replies to requests:
 
 ### Budget
 
-| Field | Datatype | Optional | Description |
-|:------|:---------|:---------|:------------|
-| id    | Integer  | No       |             |
-| org_name | String | Yes | |
-| org_email | String | Yes | |
-| org_url | String | Yes | |
-| agency_name | String | Yes | |
-| agency_email | String | Yes | |
-| agency_url | String | Yes | |
-| country | String | Yes | |
-| state | String | Yes | |
-| view  | View | No | | 
-
-### View
-
-| Field | Datatype | Optional | Description |
-|:------|:---------|:---------|:------------|
-| id    | Integer  | No       |             |
-| name  | String   | Yes      |             |
-| description  | String   | Yes      |             |
-| graphs | Array | No | Defines which graphs to show |
-| data | Data | No | |
-
-### Data
-
-| Field | Datatype | Optional | Description |
-|:------|:---------|:---------|:------------|
-| id    | Integer  | No       |             |
-| description  | String   | Yes      |             |
-| source  | String   | Yes      |             |
-| source_url  | String   | Yes      |             |
-| values | [Value] | No | |
-| sub | [Data] | Yes | |
+| Field | Datatype | Description |
+|:------|:---------|:------------|
+| key    | String  | The name of the budget |
+| coords | String | The coords (lat, lng) for the map center|
+| descr | String | The description |
+| src | String | The source of the data  |
+| values | Array[Value] | The values for the overall data |
+| view | Array | Contains the selected views |
+| children  | Array[Budget] | The children of the given budget node |
 
 ### Value
 
-| Field | Datatype | Optional | Description |
-|:------|:---------|:---------|:------------|
-| val    | Integer  | No       |             |
-| year    | Integer  | No       |             |
-| lat    | String  | No       |             |
-| lng    | String  | No       |             |
+| Field | Datatype | Description |
+|:------|:---------|:------------|
+| year    | String  | The year of the value |
+| val | Float | The value for the year |
+
 
 Responses
 ---------
@@ -109,114 +87,113 @@ GET https://example.pt:1234/1111
 
 ### Example: response
 
-    {
-	    "id": 1,
-	    "org_name": "CMSantarém",
-	    "org_url": "http://www.cmsantarem.pt",
-	    "org_email": "geral@cmsantarem.pt",
-	    "agency_name": "O Mirante",
-	    "agency_url": "http://www.omirante.pt",
-	    "agency_email": "geral@omirante.pt",
-	    "country": "Portugal",
-	    "state": "Santarém",
-	    "view":[
-		    "id": 1,
-		    "name": "Example view",
-		    "description": "This view shows graph and tabular data for 3 years of the budget education expenses.",
-		    "graphs":[
-			    "graph": 1,
-			    "tabular": 1,
-			    "bubbletree": 0,
-			    "heatmap": 0,
-			    "stacked_horizontal": 0,
-			    "treemap": 0
-		    ],
-		    "data":[
-			    "id": 1,
-			    "description": "Education Expenses",
-			    "source": "CMSantarém",
-			    "source_url": "",
-			    "values":[
-				    {
-		               "val": 1885012.0,
-		               "year": 2014,
-		               "lat": "39.325794",
-		               "lng": "-8.8613707"
-		            },
-		            {
-		               "val": 1985012.0,
-		               "year": 2015,
-		               "lat": "39.325794",
-		               "lng": "-8.8613707"
-		            },
-		            {
-		               "val": 2085012.0,
-		               "year": 2016,
-		               "lat": "39.325794",
-		               "lng": "-8.8613707"
-		            },
-				],
-				"sub":[
-					{
-						"id": 2,
-					    "description": "Schools",
-					    "source": "CMSantarém",
-					    "source_url": "",
-					    "values":[
-						    {
-				               "val": 885012.0,
-				               "year": 2014,
-				               "lat": "39.325794",
-				               "lng": "-8.8613707"
-				            },
-				            {
-				               "val": 985012.0,
-				               "year": 2015,
-				               "lat": "39.325794",
-				               "lng": "-8.8613707"
-				            },
-				            {
-				               "val": 285012.0,
-				               "year": 2016,
-				               "lat": "39.325794",
-				               "lng": "-8.8613707"
-				            },
-						],
-					},
-					{
-						"id": 3,
-					    "description": "Transportation",
-					    "source": "CMSantarém",
-					    "source_url": "",
-					    "values":[
-						    {
-				               "val": 85012.0,
-				               "year": 2014,
-				               "lat": "39.325794",
-				               "lng": "-8.8613707"
-				            },
-				            {
-				               "val": 55012.0,
-				               "year": 2015,
-				               "lat": "39.325794",
-				               "lng": "-8.8613707"
-				            },
-				            {
-				               "val": 28522.0,
-				               "year": 2016,
-				               "lat": "39.325794",
-				               "lng": "-8.8613707"
-				            },
-						],
-					}
-				]
-		    ]
-	    ]
-    }
+``` json
+
+{
+   "key":"Câmara Municipal de Lisboa",
+   "descr":"Programas Lisboa - 2017-2019",
+   "src":"no-reply@closer.com",   
+   "coords":"38.7057302,-9.1414086",
+   "children":[
+      {
+         "key":"EIXO A - LISBOA MAIS PRÓXIMA",
+         "descr":"EIXO A - LISBOA MAIS PRÓXIMA",         
+         "values":[
+            {
+               "year":"2017",
+               "val":123430
+            },
+            {
+               "year":"2018",
+               "val":86991
+            },
+            {
+               "year":"2019",
+               "val":44478
+            }
+         ]
+      },
+      {
+         "key":"EIXO B - LISBOA EMPREENDEDORA",
+         "descr":"EIXO B - LISBOA EMPREENDEDORA",         
+         "values":[
+            {
+               "year":"2017",
+               "val":1258
+            },
+            {
+               "year":"2018",
+               "val":1177
+            },
+            {
+               "year":"2019",
+               "val":677
+            }
+         ]
+      },
+      {
+         "key":"EIXO C - LISBOA INCLUSIVA",
+         "descr":"EIXO C - LISBOA INCLUSIVA",         
+         "values":[
+            {
+               "year":"2017",
+               "val":45677
+            },
+            {
+               "year":"2018",
+               "val":73622
+            },
+            {
+               "year":"2019",
+               "val":32344
+            }
+         ]
+      },
+      {
+         "key":"EIXO D - LISBOA SUSTENTÁVEL",
+         "descr":"EIXO D - LISBOA SUSTENTÁVEL",         
+         "values":[
+            {
+               "year":"2017",
+               "val":102002
+            },
+            {
+               "year":"2018",
+               "val":87391
+            },
+            {
+               "year":"2019",
+               "val":74518
+            }
+         ]
+      }
+   ],
+   "values":[
+      {
+         "year":"2017",
+         "val":287783
+      },
+      {
+         "year":"2018",
+         "val":260622
+      },
+      {
+         "year":"2019",
+         "val":158487
+      }
+   ],
+   "view":[
+      "gt",
+      "m",
+      "t"
+   ]
+}
+
+```
 
 Revision Table
 --------------
 
 | Author   | Revision      | Date  | Version Number |
 |----------|:-------------:|------:|----------------:|
-| Alberto Pereira | First draft | 25/02/2017 | 0.1.0 |
+| Alberto Pereira | First draft | 19/11/2017 | 0.1.0 |
