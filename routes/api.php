@@ -26,4 +26,13 @@ Route::group(['middleware' => ['api','cors']], function () {
         return $t;
     });
 
+    Route::get('view/{budget}/{view}', function (BudgetType $budget, $view) {
+        $v = $budget->views[$view - 1];
+        $ret = json_decode($budget->data);
+        $ret->view = json_decode($v->data);
+
+        $t = str_replace("\"sub\"","\"children\"",json_encode($ret));
+        return $t;
+    });
+
 });

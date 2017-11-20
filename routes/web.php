@@ -34,12 +34,11 @@ Route::post('/home/views/{view}', 'ViewController@updateData')->name('views.upda
 Route::delete('/home/views/{view}', 'ViewController@destroy')->name('views.destroy');
 
 Route::get('/home', 'HomeController@index')->name('home');
-// Route::get('/home/{entity}', 'HomeController@show');
 Route::get('/home/{entity}/{budget_type?}', 'HomeController@show');
 
 
-// Route::get("/view/{page?}/{year?}/{mode?}/{node?}", function(){
-//    return View::make("views.main");
-// });
+// Route::get("/view/{budget}/{view}/{page?}/{year?}/{mode?}/{node?}", 'ViewController@show');
 
-Route::get("/view/{budget}/{view}/{page?}/{year?}/{mode?}/{node?}", 'ViewController@show');
+Route::get("/view/{budget}/{view}", function ($b, $v) {
+    return '<iframe style="width:100%; height:800px; border:0px;" src="/client.html#/' . $b . '/' . $v . '"></iframe>';
+});

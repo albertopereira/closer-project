@@ -152,7 +152,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <strong>Data <a href="/view/{{ $budget_type->id }}" target="_blank">(view page)</a></strong>
+                    <strong>Data</strong>
                     {!! Form::open(['route' => array('budget_types.updateData', $budget_type->id), 'class' => 'form-inline form-confirm header-form']) !!}
                         <button id="saveData" class="btn pull-right btn-xs btn-success">Save</button>
                         <input type="hidden" name="data" id="formattedJSON">
