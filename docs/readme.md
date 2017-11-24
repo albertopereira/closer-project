@@ -15,7 +15,9 @@ The project seeks to enhance the inclusiveness of budgetary policies in local pu
 
 While there is no strict guideline right now, you are welcome to bring your ideas and pull requests.
 
-As a rule of the thumb, keep **PSR-2** and **tests** in mind.
+As a rule of the thumb, keep **PSR-2** and **tests** in mind.  
+
+Check the [Quality Assurance](quality_assurance.md) document.
 
 # Reporting Issues
 

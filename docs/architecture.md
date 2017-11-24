@@ -2,7 +2,7 @@ Architecture
 =======
 Author: Alberto Pereira
 
-Date: 25/02/2017
+Date: 16/11/2017
 
 Version: 0.1.0
 
@@ -54,7 +54,7 @@ Request Lifecycle
 
 The laravel application lifecycle for CLOSER can be represented by the following diagram:
 
-![enter image description here](http://albertopereira.com/images/laravel_lifecycle.png)
+![enter image description here](http://closer-project.com/docs/images/laravel_lifecycle.png)
 
 ### Service Providers
 
@@ -66,14 +66,15 @@ Any service provider created in the scope of this project will have its own pack
 
 | Name | Description | URL |
 |:--------|:--------------|:------|
-| **Baum** | Baum is an implementation of the Nested Set pattern for Laravel 5's Eloquent ORM. | http://etrepat.com/baum/ |
+| **D3js** | D3 is a JavaScript library for visualizing data with HTML, SVG, and CSS. | https://d3js.org |
+| **Handsontable** | Handsontable is a JavaScript Spreadsheet Component available for React, Angular and Vue. | https://handsontable.com |
 
 Structure
 ---------
 
 The following diagram represents the overall structure of the application.
 
-![enter image description here](http://albertopereira.com/images/overall_diagram.png)
+![enter image description here](http://closer-project.com/docs/images/overall_diagram.png)
 
 A response from the application can be accessed in one of three ways:
 
@@ -89,66 +90,52 @@ Data Models
 
 The data models can be represented by:
 
-![enter image description here](http://albertopereira.com/images/er.png)
+![enter image description here](http://closer-project.com/docs/images/er.png)
 
 ### Model relationships
 
 The relationships have the following rules:
 
-1- A User can create many budgets;
-2- A Budget is comprised of many years;
-3- A Year has data for several types of budget;
+1- A User can create many entities;
+2- An Entity has several types of Budget Types;
+3- A Budget Type has many views;
 
-> e.g.: revenues, expenses, etc
-
-4- The data for a specific type of budget has a specific level in a data hierarchy, represented by which data parent it has.
-
-> e.g.: the budget data for a School can be contained (be the child) in the budget data for all schools of a broader category Education (the parent).
 
 ### Model fields
 
-The `Budgets` table has the following definitions for its fields:
+The `Entities` table has the following definitions for its fields:
 
 | Table | Field | Definition |
 |:------|:------|:-----------|
-| Budgets | organization_name  | The name of the organization for which the budget applies. |
-| Budgets | organization_url | The url of the organization for which the budget applies. |
-| Budgets | organization_email | The email of the organization for which the budget applies. |
-| Budgets | agency_name | The name of the agency/organization presenting the budget. |
-| Budgets | agency_url | The url of the agency/organization presenting the budget. |
-| Budgets | agency_email | The email of the agency/organization presenting the budget. |
-| Budgets | country | The country of the organization for which the budget applies. |
-| Budgets | state | The state of the organization for which the budget applies. |
+| Entities | organization_name  | The name of the organization for which the budget applies. |
+| Entities | organization_url | The url of the organization for which the budget applies. |
+| Entities | organization_email | The email of the organization for which the budget applies. |
+| Entities | agency_name | The name of the agency/organization presenting the budget. |
+| Entities | agency_url | The url of the agency/organization presenting the budget. |
+| Entities | agency_email | The email of the agency/organization presenting the budget. |
+| Entities | country | The country of the organization for which the budget applies. |
+| Entities | state | The state of the organization for which the budget applies. |
+| Entities | created_at | Timestamp for creation. |
+| Entities | updated_at | Timestamp for update. |
 
-The `BudgetTypes` table has the following definitions for its fields:
-
-| Table | Field | Definition |
-|:------|:------|:-----------|
-| BudgetTypes | name  | The name for the specific data (e.g.: expenses, revenues, etc) |
-
-The `Years` table has the following definitions for its fields:
+The `Budget_Types` table has the following definitions for its fields:
 
 | Table | Field | Definition |
 |:------|:------|:-----------|
-| Years | long_description  | A description of the budget for the specific year. It can also be a rundown or a call to attention of a specific aspect. |
-| Years | short_description  | The summary of the budget for a specific year. |
+| Budget_Types | budget_name  | The name for the specific data (e.g.: expenses, revenues, etc) |
+| Budget_Types | data  | The JSON representation of that data |
+| Budget_Types | created_at | Timestamp for creation. |
+| Budget_Types | updated_at | Timestamp for update. |
 
-The `Data` table has the following definitions for its fields:
-
-| Table | Field | Definition |
-|:------|:------|:-----------|
-| Data | description  | A description of the data of a budget. It can also be a rundown or a call to attention of a specific aspect. |
-| Data | source  | The source of the data. |
-| Data | source_url  | The url of the source of the data. |
-| Data | value  | The decimal value of the data. |
-| Data | coordinates | the latitude;longitude of the data. |
 
 The `Views` table has the following definitions for its fields:
 
 | Table | Field | Definition |
 |:------|:------|:-----------|
-| Views | name  | The name of the view. |
+| Views | data  | A JSON object with its configuration. |
 | Views | description  | The description of the view. |
+| Views | created_at | Timestamp for creation. |
+| Views | updated_at | Timestamp for update. |
 
 
 ### Functional description
@@ -156,18 +143,34 @@ The `Views` table has the following definitions for its fields:
 #### Summary
 The following diagram describes the several use cases for the application:
 
-![enter image description here](http://albertopereira.com/images/use_cases.png)
+![enter image description here](http://closer-project.com/docs/images/use_cases.png)
+
+#### Creation of Budget Types
+
+An Entity can have several Budget Types, regarding distinct sources of data (e.g. Expenses, Projected Budgets, Revenues, etc). Each Budget Type has a field where it saves the data in a JSON format, and is edited through a spreadsheet like table.
+The structure of that table has the following definitions:
+
+| Field | Definition |
+|:------|:-----------|
+| Level 1  | The description of the first level of the data. |
+| Level #  | A repeatable column representing the sub-levels of the data |
+| Description | The description of the most lower level of data |
+| Source | The source of the data. |
+| Source URL | The source url of the data. |
+| Coords | If applicable, the coords, separated by commas (lat,lng) of the data. |
+| [Year] | A repeatable columns of the value for the corresponding year |
+
+A usual header of the table presented to the editor is   
+
+| Level 1 |	Level 2 | Description | Source | Source URL | Coords | 2017 | 2018 | 2019 |
+|:--------|:--------|:------------|:-------|:-----------|:-------|:-----|:-----|:-----|
+
 
 #### Generation of views
 
-A view object, served through the API as a JSON object, has also a representation in the database. When generating views for publish, a JSON file corresponding to that view is created and stored locally. The API serves that file, and not programatically create and send a JSON response for each request. This allows for easier scalability in the future, if need be, by, for instance, serving those JSON files through a CDN.
+A view object, served through the API as a JSON object, has also a representation in the database, in the data field of the budget_types table. This representation is created through, in the backend, a spreadsheet like editor.
 
-Hence, while creating a view, a user with editor permissions has two different actions:
-
-1. the creation of the view, that allows for an unpublished version of a view
-2. the publication of the view, that creates the JSON representation file
-
-Only after the publication of the view it can be accessed through the API.
+While creating a view for a particular Budget Type, a user with editor permissions can choose between several combinations of types of graphical representations. It can also create several distinct views, with distinct representations. So, for example, it can create a view just for a Treemap, and another view with a Treemap and a Heatmap, both reflecting data from the same Budget Type.
 
 
 Internationalisation
@@ -188,3 +191,4 @@ Revision Table
 | Author   | Revision      | Date  | Version Number |
 |:----------|:-------------:|------:|----------------:|
 | Alberto Pereira | First draft | 25/02/2017 | 0.1.0 |
+| Alberto Pereira | Changed views and budget types description | 16/11/2017 | 0.1.0 |

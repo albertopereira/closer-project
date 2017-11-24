@@ -207,10 +207,12 @@
                             <input type="checkbox" name='v[{{ $view->id }}]["gt"]' data-content="{{ $view->id }}" class="cb" data-type="gt" {{ in_array('gt', json_decode($view->data)) ? ' checked': '' }}>
                             <input type="checkbox" name='v[{{ $view->id }}]["m"]' data-content="{{ $view->id }}" class="cb" data-type="m" {{ in_array('m', json_decode($view->data)) ? ' checked': '' }}>
                             <input type="checkbox" name='v[{{ $view->id }}]["t"]' data-content="{{ $view->id }}" class="cb" data-type="t" {{ in_array('t', json_decode($view->data)) ? ' checked': '' }}>
+                            <input type="checkbox" name='v[{{ $view->id }}]["b"]' data-content="{{ $view->id }}" class="cb" data-type="b" {{ in_array('b', json_decode($view->data)) ? ' checked': '' }}>
 
                             <img src="{{ asset('frontend/img/icons/graph_treemap.png') }}" class="icon big {{ in_array('gt', json_decode($view->data)) ? ' selected': '' }}" data-toggle="tooltip" title="Graph & Treemap" data-content="{{ $view->id }}" data-type="gt">
                             <img src="{{ asset('frontend/img/icons/map.png') }}" class="icon {{ in_array('m', json_decode($view->data)) ? ' selected': '' }}" data-toggle="tooltip" title="Heatmap" data-content="{{ $view->id }}" data-type="m">
                             <img src="{{ asset('frontend/img/icons/tabular.png') }}" class="icon {{ in_array('t', json_decode($view->data)) ? ' selected': '' }}" data-toggle="tooltip" title="Tabular" data-content="{{ $view->id }}" data-type="t">
+                            <img src="{{ asset('frontend/img/icons/bubble.png') }}" class="icon {{ in_array('b', json_decode($view->data)) ? ' selected': '' }}" data-toggle="tooltip" title="Bubble" data-content="{{ $view->id }}" data-type="b">
                             <button class="btn pull-right btn-xs btn-danger remove-single-view" data-content="{{ $view->id }}">Remove</button>
                             <button class="btn pull-right btn-xs btn-success embed-single-view" data-embed="embed_{{ $i }}">Embed</button>
                             <div class="embed_{{ $i }}" style="display:none; position:absolute;width: 400px; height:60px; right: 0px; background-color: #ffffff; border:1px solid #dddddd;">
